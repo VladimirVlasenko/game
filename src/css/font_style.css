@@ -1,0 +1,11 @@
+@font-face {
+  font-weight: 400;
+  font-family: "SoupofJustice";
+  font-style: normal;
+  src: url("../assets/17728.eot");
+  src: url("../assets/17728.eot?#iefix") format("embedded-opentype"),
+    url("../assets/17728.otf") format("opentype"),
+    url("../assets/17728.ttf") format("truetype"),
+    url("../assets/17728.woff") format("woff"),
+    url("../assets/17728.woff2") format("woff2");
+}

@@ -1,0 +1,740 @@
+@import reset.sass
+@import popup.sass
+
+body
+	margin: 0
+	padding: 0
+	outline: none
+.load_screen
+	position: relative
+	display: block
+	width: 100%
+	height: 100vh
+	overflow: hidden
+	background-color: #6dced5
+	.rating_icon,
+	.settings_icon
+		position: absolute
+		top: -150%
+		z-index: 3
+		display: block
+		cursor: pointer
+		opacity: 0
+		&.visible
+			top: 30px
+			transition: top 3s ease
+		&:hover
+			animation: closeButtonAnimation 2s ease 0s 1 normal both
+	.rating_icon
+		left: 170px
+	.settings_icon
+		right: 170px
+	.play_button
+		position: absolute
+		bottom: -100%
+		left: 50%
+		z-index: 4
+		display: block
+		transform: translateX(-50%) scale(1)
+		cursor: pointer
+		opacity: 0
+		&.visible
+			bottom: 10%
+			opacity: 1
+			transition: all 3s ease
+		&_big
+			width: 10vw
+			&:hover
+				animation: closeButtonAnimation 2s ease
+	.flora
+		position: absolute
+		bottom: 0px
+		z-index: 2
+		display: block
+		width: 1700px
+		height: 30vh
+		opacity: 0
+		transition: 3s all ease
+		img
+			position: absolute
+			bottom: 0
+			left: 50%
+			width: 1700px
+			height: 70vh
+			margin: 0 auto
+			transform: translateX(-50%)
+	.flora.floraToTop
+		transition: 3s all ease
+		animation: floraToTop 3s ease
+		animation-fill-mode: forwards
+	.flora.floraToBottom
+		animation: floraToBottom 3s ease
+		animation-fill-mode: forwards
+	.game_name
+		position: absolute
+		top: 35%
+		left: 50%
+		z-index: 3
+		display: block
+		transform: translate(-50%, -50%)
+		opacity: 0
+		img
+			display: block
+			width: 40vw
+			margin: 0 auto
+	.bg_small_clouds
+		position: absolute
+		top: 80%
+		right: 0%
+		z-index: 2
+		display: block
+		.small_clouds_container
+			position: absolute
+			right: 0%
+			display: block
+			width: 2840px
+			img
+				position: relative
+				display: inline-block
+	.bg_small_clouds.smallCloudsToTop
+		animation: smallCloudsToTop 3s ease
+		animation-fill-mode: forwards
+	.bg_big_clouds
+		position: relative
+		top: 20%
+		right: 0%
+		z-index: 2
+		display: block
+		width: 100%
+		height: 100%
+		overflow: hidden
+		.big_clouds_container
+			position: absolute
+			right: 0%
+			display: block
+			width: 3000px
+			img
+				position: relative
+				display: inline-block
+	.bg_big_clouds.bigCloudsToTop
+		animation: bigCloudsToTop 3s ease
+		animation-fill-mode: forwards
+	.topGameMenu
+		position: absolute
+		top: -100%
+		left: 50%
+		z-index: 3
+		display: block
+		transform: translateX(-50%)
+		.topMenu_container
+			position: relative
+			width: 100%
+			height: 100%
+			img
+				width: 50vw
+			.timerC
+				position: absolute
+				top: 10px
+				left: 50px
+				z-index: 4
+				.timer_container
+					position: relative
+					display: flex
+					justify-content: flex-start
+					align-items: center
+					.timer_icon
+						z-index: 5
+						img
+							width: 35px
+							height: 35px
+					.countdown
+						z-index: 3
+						display: block
+						box-sizing: border-box
+						width: 80px
+						height: 30px
+						margin-left: -2px
+						padding-left: 10px
+						background-color: #5f2e18
+						border: 2px
+						border-radius: 5px
+						box-shadow: inset 2px 2px 2px #000000
+						.timer_field
+							width: 80px
+							height: 30px
+							margin: 0
+							margin-left: 2vh
+							font-size: 20px
+							line-height: 30px
+							font-family: Arial, Helvetica, sans-serif
+							text-align: left
+							color: #ffffff
+			.play_pause
+				position: absolute
+				top: 15px
+				right: 50px
+				display: block
+				.play_pause_container
+					position: relative
+					display: block
+					.pause
+						display: block
+						width: 30px
+						cursor: pointer
+					.resume
+						display: none
+						width: 30px
+						cursor: pointer
+	.topGameMenu.topMenuToBottom
+		transition: all 2s ease
+		animation: topMenuToBottom 1s ease
+		animation-fill-mode: forwards
+	.pics_storage
+		display: none
+	.game_field
+		position: absolute
+		top: 60%
+		left: 50%
+		z-index: 5
+		display: none
+		transform: translate(-50%, -50%)
+		opacity: 0
+		.game_field_container
+			position: relative
+			display: flex
+			flex-wrap: wrap
+			justify-content: space-between
+			align-items: flex-start
+			width: 75vh
+			height: 75vh
+			.empty_game_field_item,
+			.game_field_item
+				&.diff1
+					width: 32%
+					height: 32%
+					margin-right: 1%
+					margin-bottom: 1%
+				&.diff2
+					width: 24%
+					height: 24%
+					margin-right: 1%
+					margin-bottom: 1%
+				&.diff3
+					width: 19%
+					height: 19%
+					margin-right: 1%
+					margin-bottom: 1%
+				&.diff4
+					width: 15.5%
+					height: 15.5%
+					margin-right: 1%
+					margin-bottom: 1%
+			.game_field_item
+				position: relative
+				border-radius: 3vh
+				perspective: 1000px
+				cursor: pointer
+				transition: all 0.5s ease
+				.flipper.opened
+					transform: rotateY(180deg)
+					transition: transform 1s ease
+				.flipper.solved
+					transform: rotateY(180deg)
+					transition: transform 1s ease
+				.flipper
+					position: relative
+					width: 100%
+					height: 100%
+					transform-style: preserve-3d
+					transition: transform 1s ease
+					.behind_example,
+					.front
+						position: absolute
+						top: 0
+						left: 0
+						z-index: 6
+						width: 100%
+						height: 100%
+						transform: rotateY(180deg)
+						backface-visibility: hidden
+					.behind_example
+						z-index: 5
+						background: url('../assets/images/behind.png') center/100% auto no-repeat
+						transform: rotateY(0deg)
+				&:hover
+					transform: scale(1.1)
+					transition: all 0.5s ease
+
+	.settings
+		position: absolute
+		width: 600px
+		height: 550px
+		&_container
+			position: relative
+			width: 600px
+			height: 550px
+			padding-top: 170px
+			padding-bottom: 100px
+			background: url("../assets/images/settingsBg.png") center/100% auto no-repeat
+			.settings_button_ok,
+			.settings_button_close
+				position: absolute
+				top: 16vh
+				display: block
+				width: 13vh
+				height: 13vh
+				cursor: pointer
+				&:hover
+					animation: closeButtonAnimation 2s ease 0s 1 normal both
+			.settings_button_ok
+				left: -3vh
+				background: url("../assets/images/settingsOkButton.png") center/100% auto no-repeat
+			.settings_button_close
+				right: -3vh
+				background: url("../assets/images/settingsButtonClose.png") center/100% auto no-repeat
+			.sound_container
+				position: relative
+				display: flex
+				flex-direction: column
+				justify-content: space-between
+				align-items: center
+				width: 60vh
+				margin: 0 auto
+				font-weight: 700
+				font-size: 5vh
+				font-family: "SoupofJustice", "Arial", sans-serif
+				color: rgb(51, 51, 51)
+				text-transform: uppercase
+				.music,
+				.sound
+					display: flex
+					justify-content: space-between
+					align-items: center
+					width: 55vh
+					.music_name,
+					.sound_name
+						margin-top: 0px
+						margin-bottom: 0vh
+						line-height: 8vh
+					.music_label,
+					.sound_label
+						position: relative
+						display: block
+						box-sizing: border-box
+						width: 15vh
+						height: 6vh
+						padding-right: 2vh
+						padding-left: 2vh
+						font-size: 4vh
+						line-height: 6vh
+						font-family: "SoupofJustice"
+						text-align: left
+						color: rgb(255, 255, 255)
+						text-transform: uppercase
+						background-color: #717171
+						border-radius: 3vh
+						box-shadow: 0px 5px 6px 0px #000000 inset
+						cursor: pointer
+						span
+							position: absolute
+							top: 1vh
+							right: 1vh
+							display: block
+							width: 4vh
+							height: 4vh
+							background: url("../assets/images/circleOn.png") center/100% auto no-repeat
+
+					.music_label.off,
+					.sound_label.off
+						text-align: right
+						span
+							right: auto
+							left: 1vh
+							background: url('../assets/images/circleOff.png') center/100% auto no-repeat
+							background-size: 100% auto
+			.choose_difficulty
+				font-weight: 700
+				font-size: 5vh
+				font-family: "SoupofJustice"
+				text-align: center
+				color: rgb(51, 51, 51)
+				text-transform: uppercase
+			.levels
+				position: relative
+				display: flex
+				flex-wrap: wrap
+				justify-content: space-between
+				align-items: center
+				width: 50vh
+				.levels_item
+					display: flex
+					justify-content: center
+					align-items: center
+					width: 40%
+					height: 8vh
+					margin-bottom: 2vh
+					background-color: #cec1b5
+					border-radius: 3vh
+					box-shadow: 0px 5px 6px 0px #000000 inset
+					cursor: pointer
+					&:hover
+						box-shadow: 0px 7px 6px 0px #000000 inset
+					p
+						margin-top: 0
+						margin-bottom: 0
+						font-size: 3vh
+						font-family: "SoupofJustice"
+						text-align: center
+						color: rgb(51, 51, 51)
+						text-transform: uppercase
+				.levels_item.pushed
+					background: url("../assets/images/levelBg.png") center/100% auto no-repeat
+	.rating
+		position: absolute
+		width: auto
+		height: 90vh
+		&_container
+			position: relative
+			display: flex
+			flex-direction: column
+			justify-content: center
+			align-items: center
+			width: 62vh
+			height: 90vh
+			margin: 0 auto
+			padding-top: 22vh
+			padding-right: 8vh
+			padding-bottom: 16vh
+			padding-left: 8vh
+			background: url("../assets/images/ratingBg.png") center/100% auto  no-repeat
+			transform: translateY(-50%)
+			.rating_button_close
+				position: absolute
+				top: 10vh
+				right: 0vh
+				display: block
+				width: 13vh
+				height: 13vh
+				background: url("../assets/images/settingsButtonClose.png") center/100% auto no-repeat
+				cursor: pointer
+				&:hover
+					animation: closeButtonAnimation 2s ease 0s 1 normal both
+			.rating_cont
+				position: relative
+				display: flex
+				flex-direction: column
+				justify-content: space-between
+				align-items: center
+				width: 95%
+				height: 90%
+				overflow-y: scroll
+				.rating_item
+					display: flex
+					justify-content: space-between
+					align-items: center
+					box-sizing: border-box
+					width: 100%
+					height: 10vh
+					margin-bottom: 2vh
+					padding-right: 1vh
+					.rating_avatar
+						display: block
+						width: 7vh
+						height: 7vh
+						background: url('../assets/images/ratingAvatar.png') center/100% auto no-repeat
+					.rating_score
+						display: flex
+						flex-direction: column
+						justify-content: center
+						align-items: center
+						width: 40%
+						.rating_score_name,
+						.rating_score_definition
+							display: block
+							margin: 0
+							font-size: 5vh
+							font-family: "SoupofJustice"
+							text-align: left
+							text-transform: uppercase
+						.rating_score_name
+							color: rgb(51, 51, 51)
+						.rating_score_definition
+							color: rgb(4, 125, 155)
+					.rating_like
+						display: block
+						width: 15vh
+						height: 10vh
+						background: url('../assets/images/ratingLike.png') center/100% auto no-repeat
+				&::-webkit-scrollbar
+					width: 10px
+					background-color: gray
+					border-radius: 5px
+				&::-webkit-scrollbar-track
+					width: 10px
+					border-radius: 5px
+					background: linear-gradient(180deg, rgba(85,85,85,1) 0%, rgba(133,133,134,1) 35%, rgba(199,199,199,1) 100%)
+				&::-webkit-scrollbar-track-piece
+					width: 10px
+					height: 10px
+					border-radius: 5px
+				&::-webkit-scrollbar-thumb
+					width: 15px
+					height: 15px
+					background: url('../assets/images/redSphere.png') center center no-repeat
+					background-size: 100% auto
+					transform: scale(1.2)
+				&::-webkit-scrollbar-corner
+					background-color: #999
+	.win_popup
+		position: absolute
+		width: auto
+		height: 90vh
+		margin: 0 auto
+		&_container
+			position: relative
+			display: flex
+			flex-direction: column
+			justify-content: flex-start
+			align-items: center
+			width: 62vh
+			height: 90vh
+			margin: 0 auto
+			padding-top: 20vh
+			padding-bottom: 16vh
+			background: url("../assets/images/winBg.png") center/100% auto no-repeat
+			transform: translateY(-50%)
+			.win_popup_button_close
+				position: absolute
+				top: 10vh
+				right: 0vh
+				display: block
+				width: 13vh
+				height: 13vh
+				background: url("../assets/images/settingsButtonClose.png") center/100% auto no-repeat
+				cursor: pointer
+				&:hover
+					animation: closeButtonAnimation 2s ease 0s 1 normal both
+			.stars
+				position: relative
+				display: flex
+				justify-content: center
+				align-items: center
+				margin-bottom: 2vh
+				.star
+					position: relative
+					display: none
+					width: 30vh
+				.star.active
+					display: block
+			.score
+				.your_score
+					.score_name
+						margin: 0
+						margin-bottom: 2vh
+						font-size: 5vh
+						line-height: 0.828
+						font-family: "SoupofJustice"
+						text-align: center
+						color: rgb(51, 51, 51)
+						text-transform: uppercase
+					.your_score_content
+						margin: 0
+						margin-bottom: 4vh
+						font-size: 10vh
+						line-height: 0.603
+						font-family: "SoupofJustice"
+						text-align: center
+						color: rgb(4, 125, 155)
+						text-transform: uppercase
+				.leaders_score
+					.leader_score_name
+						margin: 0
+						margin-bottom: 2vh
+						font-size: 5vh
+						line-height: 0.828
+						font-family: "SoupofJustice"
+						text-align: center
+						color: rgb(51, 51, 51)
+						text-transform: uppercase
+					.leader_score_content
+						margin: 0
+						margin-bottom: 1vh
+						font-size: 4vh
+						line-height: 0.603
+						font-family: "SoupofJustice"
+						text-align: center
+						color: rgb(4, 125, 155)
+						text-transform: uppercase
+			.win_buttons
+				display: flex
+				justify-content: space-between
+				align-items: center
+				width: 30vh
+				margin-top: 10vh
+				.win_button_next_game,
+				.win_button_main_menu
+					display: block
+					width: 10vh
+					height: 10vh
+					cursor: pointer
+					&:hover
+						animation: closeButtonAnimation 2s ease 0s 1 normal both
+				.win_button_next_game
+					background: url("../assets/images/winNextGame.png") center/100% auto no-repeat
+				.win_button_main_menu
+					background: url("../assets/images/winMainMenu.png") center/100% auto no-repeat
+	.loose_popup
+		position: absolute
+		width: auto
+		height: 90vh
+		&_container
+			position: relative
+			display: flex
+			flex-direction: column
+			justify-content: flex-start
+			align-items: center
+			width: 62vh
+			height: 90vh
+			padding-top: 30vh
+			padding-bottom: 16vh
+			background: url("../assets/images/looseBg.png") center/100% auto no-repeat
+			transform: translateY(-50%)
+			.stars
+				position: relative
+				display: flex
+				justify-content: center
+				align-items: center
+				width: 30vh
+				height: 20vh
+				margin-top: 3vh
+				background: url("../assets/images/stars0.png") center/100% auto no-repeat
+			.loose_buttons
+				display: flex
+				justify-content: space-between
+				align-items: center
+				width: 30vh
+				margin-top: 9vh
+				.loose_button_next_game,
+				.loose_button_main_menu
+					display: block
+					width: 10vh
+					height: 10vh
+					cursor: pointer
+					&:hover
+						animation: closeButtonAnimation 2s ease 0s 1 normal both
+				.loose_button_next_game
+					background: url("../assets/images/winNextGame.png") center/100% auto no-repeat
+				.loose_button_main_menu
+					background: url("../assets/images/winMainMenu.png") center/100% auto no-repeat
+
+	.loose_popup.active
+		top: 50%
+		left: 50%
+		transform: translate(-50%, -50%)
+		opacity: 1
+	.pause_popup
+		position: absolute
+		top: -250%
+		left: 50%
+		z-index: 6
+		display: block
+		width: 500px
+		height: 800px
+		margin: 0 auto
+		transform: translate(-50%, 0)
+		opacity: 0
+		transition: all 2s ease
+		&_container
+			position: relative
+			top: 50%
+			z-index: 6
+			display: flex
+			flex-direction: column
+			justify-content: flex-start
+			align-items: center
+			box-sizing: border-box
+			width: 80%
+			height: 500px
+			margin: 0 auto
+			padding-top: 200px
+			padding-bottom: 40px
+			background: url("../assets/images/pauseBg.png") center/100% auto no-repeat
+			transform: translateY(-50%)
+			.sugestion
+				margin-top: 10px
+				font-size: 35px
+				font-family: "SoupofJustice"
+				text-align: center
+				color: rgb(51, 51, 51)
+				text-transform: uppercase
+			.pause_buttons
+				display: flex
+				justify-content: space-between
+				align-items: center
+				width: 200px
+				margin-top: 70px
+				.pause_button_next_game,
+				.pause_button_main_menu
+					display: block
+					width: 70px
+					height: 70px
+					cursor: pointer
+					&:hover
+						animation: closeButtonAnimation 2s ease 0s 1 normal both
+				.pause_button_next_game
+					background: url("../assets/images/winNextGame.png") center/100% auto no-repeat
+				.pause_button_main_menu
+					background: url("../assets/images/winMainMenu.png") center/100% auto no-repeat
+	.pause_popup.active
+		top: 50%
+		left: 50%
+		transform: translate(-50%, -50%)
+		opacity: 1
+.invisible
+	z-index: 4
+	opacity: 0 !important
+	transition: opacity 3s ease 2s
+	animation-fill-mode: forwards
+.visible
+	opacity: 1 !important
+	transition: opacity 3s ease 2s
+
+@keyframes bigCloudsToTop
+	0%
+		top: 20%
+	100%
+		top: 0%
+@keyframes smallCloudsToTop
+	0%
+		top: 80%
+	100%
+		top: 40%
+@keyframes floraToTop
+	0%
+		bottom: -100%
+	100%
+		bottom: 0%
+@keyframes floraToBottom
+	0%
+		bottom: 0%
+	100%
+		bottom: -150%
+@keyframes topMenuToBottom
+	0%
+		top: -100%
+	100%
+		top: 0%
+@keyframes closeButtonAnimation
+	0%
+		transform: scale(1.0)
+	20%
+		transform: scale(1.1)
+	40%
+		transform: scale(1.0)
+	60%
+		transform: scale(1.1)
+	80%
+		transform: scale(1.0)
+	100%
+		transform: scale(1.1)
+@import media.sass
